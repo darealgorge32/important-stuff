@@ -1,2 +1,2 @@
 Hopefull mecha game
-verry fun?
+verry fun? i hope.
