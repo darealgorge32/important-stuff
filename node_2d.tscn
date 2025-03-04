@@ -1,5 +1,47 @@
-[gd_scene format=3 uid="uid://g4kyim08bauj"]
+[gd_scene load_steps=8 format=3 uid="uid://g4kyim08bauj"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://dw57od70od27n" path="res://icon.svg" id="1_talid"]
+[ext_resource type="Script" path="res://character_body_3d.gd" id="1_yib3c"]
+[ext_resource type="Script" path="res://static_body_3d.gd" id="3_ftl5l"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t4cpd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_q4153"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uxf3l"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2vdj1"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(0.84676, 0, 0.531975, 0, 1, 0, -0.531975, 0, 0.84676, 0, 0, 0)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_yib3c")
+
+[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D"]
+texture = ExtResource("1_talid")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_t4cpd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("CapsuleMesh_q4153")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01446, -0.00507343, 2.6993)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("3_ftl5l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(29.3684, 0, -9.53674e-07, 0, 1, 0, 1.90735e-06, 0, 30.0913, 0, -1.83286, 0)
+shape = SubResource("BoxShape3D_uxf3l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0118843, 0)
+mesh = SubResource("BoxMesh_2vdj1")
+skeleton = NodePath("../../../CharacterBody3D/MeshInstance3D")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.77009, 0, -0.637935, 0, 1, 0, 0.637935, 0, 0.77009, -1.04872, 0, 1.66928)
