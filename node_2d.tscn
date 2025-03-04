@@ -1,12 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://g4kyim08bauj"]
+[gd_scene load_steps=7 format=3 uid="uid://g4kyim08bauj"]
 
-[ext_resource type="Texture2D" uid="uid://dw57od70od27n" path="res://icon.svg" id="1_talid"]
 [ext_resource type="Script" path="res://character_body_3d.gd" id="1_yib3c"]
+[ext_resource type="ArrayMesh" uid="uid://8lq4vd00ompi" path="res://bot-001.1.obj" id="2_vghi2"]
 [ext_resource type="Script" path="res://static_body_3d.gd" id="3_ftl5l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t4cpd"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_q4153"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uxf3l"]
 
@@ -18,14 +16,12 @@ transform = Transform3D(0.84676, 0, 0.531975, 0, 1, 0, -0.531975, 0, 0.84676, 0,
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 script = ExtResource("1_yib3c")
 
-[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D"]
-texture = ExtResource("1_talid")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("CapsuleShape3D_t4cpd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
-mesh = SubResource("CapsuleMesh_q4153")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98668, 0)
+mesh = ExtResource("2_vghi2")
 skeleton = NodePath("../CollisionShape3D")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
